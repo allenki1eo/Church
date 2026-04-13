@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background:            243 23% 8%;
+    --foreground:            0 0% 95%;
+    --card:                  243 20% 14%;
+    --card-foreground:       0 0% 92%;
+    --popover:               244 21% 12%;
+    --popover-foreground:    0 0% 95%;
+    --primary:               41 49% 55%;
+    --primary-foreground:    243 23% 8%;
+    --secondary:             243 17% 20%;
+    --secondary-foreground:  0 0% 85%;
+    --muted:                 243 17% 16%;
+    --muted-foreground:      0 0% 55%;
+    --accent:                41 49% 55%;
+    --accent-foreground:     243 23% 8%;
+    --destructive:           0 63% 62%;
+    --destructive-foreground: 0 0% 98%;
+    --border:                242 17% 21%;
+    --input:                 242 17% 21%;
+    --ring:                  41 49% 55%;
+    --radius:                0.625rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border box-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+
+  h1 { @apply text-4xl font-semibold; }
+  h2 { @apply text-3xl font-semibold; }
+  h3 { @apply text-2xl font-medium; }
+  h4 { @apply text-xl font-medium; }
+}
+
+/* ── Scrollbars ────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; height: 5px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: hsl(var(--border)); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary)); }
+
+/* ── Gold shimmer accent ────────────────────── */
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    #c9a84c 0%,
+    #e8c97a 40%,
+    #c9a84c 60%,
+    #e8c97a 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Glass card ─────────────────────────────── */
+.glass-card {
+  background: rgba(33, 31, 48, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+/* ── Sidebar active glow ─────────────────────── */
+.nav-active {
+  position: relative;
+  background: linear-gradient(90deg, rgba(201,168,76,0.12) 0%, transparent 100%);
+  border-left: 2px solid #c9a84c;
+}
+
+/* ── Table money cell ───────────────────────── */
+.money-cell {
+  @apply text-right font-mono tabular-nums;
+}
+
+/* ── Fade in animation helper ──────────────── */
+.animate-page {
+  animation: fade-in 0.35s ease-out;
+}
+
+/* ── Progress bar gradient ─────────────────── */
+.progress-gold [data-state] > div {
+  background: linear-gradient(90deg, #c9a84c, #e8c97a);
+}
+
+/* ── Print styles ──────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+  body {
+    background: white;
+    color: black;
+  }
+}
